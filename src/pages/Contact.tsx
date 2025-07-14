@@ -213,6 +213,33 @@ export const Contact = () => {
             </div>
           </div>
         </div>
+
+        {/* Map Section */}
+        <div className="mt-12">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Find Us</h2>
+            <p className="text-muted-foreground">
+              Visit our physical location in the heart of the cultural district
+            </p>
+          </div>
+          <Card className="bg-gradient-card border-archive-gold/20 shadow-warm">
+            <CardContent className="p-8">
+              <div className="w-full h-96 bg-archive-brown/20 rounded-lg border border-archive-gold/20 flex items-center justify-center">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.1!2d-74.0059728!3d40.7589374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1635959000000!5m2!1sen!2sus"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-lg"
+                  title="Historical Archive Location"
+                ></iframe>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );

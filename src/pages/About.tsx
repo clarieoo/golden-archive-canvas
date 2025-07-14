@@ -126,71 +126,15 @@ export const About = () => {
           </div>
         </div>
 
-        {/* Contact Section */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
-          {/* Get in Touch */}
-          <div className="bg-gradient-card border border-archive-gold/20 rounded-lg p-8 shadow-warm">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Get in Touch</h2>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold">📍</span>
-                </div>
-                <div>
-                  <p className="font-medium text-foreground">Visit Us</p>
-                  <p className="text-muted-foreground text-sm">123 Museum Lane, Art District</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold">📞</span>
-                </div>
-                <div>
-                  <p className="font-medium text-foreground">Call Us</p>
-                  <p className="text-muted-foreground text-sm">+1 (555) 123-4567</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold">✉️</span>
-                </div>
-                <div>
-                  <p className="font-medium text-foreground">Email Us</p>
-                  <p className="text-muted-foreground text-sm">info@historicalarchive.com</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Map Frame */}
-          <div className="bg-gradient-card border border-archive-gold/20 rounded-lg p-8 shadow-warm">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Find Us</h2>
-            <div className="w-full h-64 bg-archive-brown/20 rounded-lg border border-archive-gold/20 flex items-center justify-center">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.1!2d-74.0059728!3d40.7589374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1635959000000!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="rounded-lg"
-                title="Our Location"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-
-        {/* Send us a Message */}
+        {/* Call to Action */}
         <div className="text-center bg-gradient-card border border-archive-gold/20 rounded-lg p-8 shadow-warm">
-          <h2 className="text-2xl font-bold text-foreground mb-4">Send us a Message</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-4">Join Our Community</h2>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Have questions about our collection? Want to contribute to our archive? We'd love to hear from you. 
-            Join our community of art enthusiasts and historians.
+            Become part of our community of art enthusiasts and historians. Explore our collection and contribute to preserving history.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="archive" size="lg" asChild>
-              <Link to="/contact">Contact Us</Link>
+              <Link to="/gallery">Explore Collection</Link>
             </Button>
             <Button variant="elegant" size="lg" asChild>
               <Link to="/signup">Join Community</Link>
