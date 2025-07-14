@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Archive } from "lucide-react";
+import { Menu, X, Palette } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { BackButton } from "./BackButton";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,13 +22,16 @@ export const Navigation = () => {
     <nav className="bg-gradient-primary shadow-elegant sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <Archive className="h-8 w-8 text-archive-gold" />
-            <span className="text-xl font-bold text-primary-foreground">
-              Historical Archive
-            </span>
-          </Link>
+          {/* Back Button & Logo */}
+          <div className="flex items-center space-x-4">
+            {location.pathname !== "/" && <BackButton />}
+            <Link to="/" className="flex items-center space-x-2">
+              <Palette className="h-8 w-8 text-archive-gold" />
+              <span className="text-xl font-bold text-primary-foreground">
+                Historical Archive
+              </span>
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
