@@ -18,6 +18,10 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // Archive-specific variants
+        archive: "bg-gradient-primary text-primary-foreground hover:opacity-90 shadow-warm transition-all duration-300",
+        golden: "bg-archive-gold text-archive-brown hover:bg-archive-gold/80 shadow-golden transition-all duration-300",
+        elegant: "bg-gradient-card border border-archive-gold/20 text-archive-brown hover:shadow-elegant transition-all duration-300",
       },
       size: {
         default: "h-10 px-4 py-2",
