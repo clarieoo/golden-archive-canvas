@@ -11,18 +11,36 @@ export const SignIn = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    role: "visitor",
     remember: false
   });
   const [showPassword, setShowPassword] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically authenticate with your backend
+    localStorage.setItem('userRole', formData.role);
+    localStorage.setItem('isAuthenticated', 'true');
+    
     toast({
       title: "Welcome back!",
       description: "You have successfully signed in to your account.",
     });
+
+    switch (formData.role) {
+      case 'admin':
+        navigate('/admin/dashboard');
+        break;
+      case 'curator':
+        navigate('/curator/dashboard');
+        break;
+      case 'professor':
+        navigate('/professor/dashboard');
+        break;
+      default:
+        navigate('/');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,6 +86,26 @@ export const SignIn = () => {
                     placeholder="Enter your email"
                   />
                 </div>
+              </div>
+
+              <div>
+                <label htmlFor="role" className="block text-sm font-medium text-foreground mb-2">
+                  Select Your Role
+                </label>
+                <Select
+                  value={formData.role}
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, role: value }))}
+                >
+                  <SelectTrigger className="bg-background border-archive-gold/20">
+                    <SelectValue placeholder="Choose your role" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="visitor">Visitor</SelectItem>
+                    <SelectItem value="curator">Curator</SelectItem>
+                    <SelectItem value="professor">Professor</SelectItem>
+                    <SelectItem value="admin">Admin</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               <div>
