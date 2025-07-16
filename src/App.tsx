@@ -30,6 +30,10 @@ const App = () => (
             <Route path="gallery" element={<Gallery />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
+            {/* Temporary routes for UI review */}
+            <Route path="admin-dashboard" element={<AdminDashboard />} />
+            <Route path="curator-dashboard" element={<CuratorDashboard />} />
+            <Route path="professor-dashboard" element={<ProfessorDashboard />} />
           </Route>
           <Route path="signin" element={<SignIn />} />
           <Route path="signup" element={<SignUp />} />
