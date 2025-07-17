@@ -12,7 +12,6 @@ export const SignIn = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    role: "visitor",
     remember: false
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -21,7 +20,7 @@ export const SignIn = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    localStorage.setItem('userRole', formData.role);
+    localStorage.setItem('userRole', 'visitor');
     localStorage.setItem('isAuthenticated', 'true');
     
     toast({
@@ -29,19 +28,7 @@ export const SignIn = () => {
       description: "You have successfully signed in to your account.",
     });
 
-    switch (formData.role) {
-      case 'admin':
-        navigate('/admin/dashboard');
-        break;
-      case 'curator':
-        navigate('/curator/dashboard');
-        break;
-      case 'professor':
-        navigate('/professor/dashboard');
-        break;
-      default:
-        navigate('/');
-    }
+    navigate('/');
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,25 +76,6 @@ export const SignIn = () => {
                 </div>
               </div>
 
-              <div>
-                <label htmlFor="role" className="block text-sm font-medium text-foreground mb-2">
-                  Select Your Role
-                </label>
-                <Select
-                  value={formData.role}
-                  onValueChange={(value) => setFormData(prev => ({ ...prev, role: value }))}
-                >
-                  <SelectTrigger className="bg-background border-archive-gold/20">
-                    <SelectValue placeholder="Choose your role" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="visitor">Visitor</SelectItem>
-                    <SelectItem value="curator">Curator</SelectItem>
-                    <SelectItem value="professor">Professor</SelectItem>
-                    <SelectItem value="admin">Admin</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
 
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-foreground mb-2">

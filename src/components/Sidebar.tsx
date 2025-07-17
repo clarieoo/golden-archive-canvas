@@ -64,14 +64,14 @@ export const Sidebar = ({ userRole, onLogout }: SidebarProps) => {
         variant="ghost"
         size="icon"
         onClick={toggleSidebar}
-        className="fixed top-4 left-4 z-50 lg:hidden bg-gradient-card shadow-warm"
+        className="fixed top-4 right-4 z-50 lg:hidden bg-gradient-card shadow-warm"
       >
         {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </Button>
 
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-40 w-64 bg-gradient-card border-r border-archive-gold/20 transform transition-transform duration-300 ease-in-out ${
-        isOpen ? 'translate-x-0' : '-translate-x-full'
+      <div className={`fixed inset-y-0 right-0 z-40 w-64 bg-gradient-card border-l border-archive-gold/20 transform transition-transform duration-300 ease-in-out ${
+        isOpen ? 'translate-x-0' : 'translate-x-full'
       } lg:translate-x-0 lg:static lg:inset-0`}>
         <div className="flex flex-col h-full">
           {/* Header */}

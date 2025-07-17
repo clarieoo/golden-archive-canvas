@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Palette } from "lucide-react";
+import { Menu, X, Palette, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { BackButton } from "./BackButton";
@@ -47,11 +47,10 @@ export const Navigation = () => {
               </Link>
             ))}
             <div className="flex items-center space-x-2">
-              <Button variant="golden" size="sm" asChild>
-                <Link to="/signin">Sign In</Link>
-              </Button>
-              <Button variant="elegant" size="sm" asChild>
-                <Link to="/signup">Sign Up</Link>
+              <Button variant="ghost" size="icon" asChild>
+                <Link to="/signin">
+                  <User className="h-5 w-5 text-primary-foreground" />
+                </Link>
               </Button>
             </div>
           </div>
@@ -87,11 +86,11 @@ export const Navigation = () => {
                 </Link>
               ))}
               <div className="flex flex-col space-y-2 pt-2">
-                <Button variant="golden" size="sm" asChild>
-                  <Link to="/signin" onClick={() => setIsOpen(false)}>Sign In</Link>
-                </Button>
-                <Button variant="elegant" size="sm" asChild>
-                  <Link to="/signup" onClick={() => setIsOpen(false)}>Sign Up</Link>
+                <Button variant="ghost" asChild>
+                  <Link to="/signin" onClick={() => setIsOpen(false)} className="flex items-center justify-center">
+                    <User className="h-4 w-4 mr-2" />
+                    Profile
+                  </Link>
                 </Button>
               </div>
             </div>
