@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 
 export const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -16,12 +16,22 @@ export const SignIn = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const { toast } = useToast();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    localStorage.setItem('userRole', 'visitor');
-    localStorage.setItem('isAuthenticated', 'true');
+    
+    // Simulate user login - in real app, this would be an API call
+    const userData = {
+      id: "1",
+      username: formData.email.split('@')[0],
+      email: formData.email,
+      role: "visitor",
+      avatar: ""
+    };
+    
+    login(userData);
     
     toast({
       title: "Welcome back!",
