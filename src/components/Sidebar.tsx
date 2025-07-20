@@ -12,7 +12,13 @@ import {
   CheckCircle, 
   Clock,
   Menu,
-  X
+  X,
+  Award,
+  BarChart3,
+  Users,
+  FileText,
+  Palette,
+  Bookmark
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -40,29 +46,30 @@ export const Sidebar = ({ userRole, onLogout, isOpen = false, onClose }: Sidebar
 
   const menuItems = {
     admin: [
-      { icon: Home, label: "Dashboard", path: "/admin/dashboard" },
-      { icon: Images, label: "Gallery", path: "/gallery" },
-      { icon: Settings, label: "Settings", path: "/admin/settings" },
-      { icon: User, label: "Users", path: "/admin/users" },
+      { icon: BarChart3, label: "Dashboard", path: "/admin-dashboard" },
+      { icon: Users, label: "Manage Users", path: "/admin-manage-users" },
+      { icon: FileText, label: "Review Arts", path: "/admin-review-arts" },
+      { icon: Palette, label: "Categories", path: "/admin-categories" },
+      { icon: BarChart3, label: "Reports", path: "/admin-reports" },
     ],
     curator: [
-      { icon: Home, label: "Dashboard", path: "/curator/dashboard" },
+      { icon: BarChart3, label: "Dashboard", path: "/curator-dashboard" },
       { icon: Upload, label: "Upload Art", path: "/curator/upload" },
       { icon: Images, label: "My Arts", path: "/curator/arts" },
       { icon: Images, label: "Gallery", path: "/gallery" },
     ],
     professor: [
-      { icon: Home, label: "Dashboard", path: "/professor/dashboard" },
+      { icon: BarChart3, label: "Dashboard", path: "/professor-dashboard" },
       { icon: CheckCircle, label: "Approve Arts", path: "/professor/approve" },
       { icon: Clock, label: "Pending", path: "/professor/pending" },
       { icon: Images, label: "Gallery", path: "/gallery" },
     ],
-      visitor: [
-        { icon: Home, label: "Home", path: "/" },
-        { icon: Images, label: "Gallery", path: "/gallery" },
-        { icon: Info, label: "About", path: "/about" },
-        { icon: Mail, label: "Contact", path: "/contact" },
-      ]
+    visitor: [
+      { icon: BarChart3, label: "Dashboard", path: "/visitor-dashboard" },
+      { icon: Images, label: "Browse Gallery", path: "/gallery" },
+      { icon: Bookmark, label: "Saved Items", path: "/saved" },
+      { icon: Award, label: "Upgrade to Curator", path: "/upgrade-to-curator" },
+    ]
   };
 
   const currentItems = menuItems[userRole as keyof typeof menuItems] || menuItems.visitor;

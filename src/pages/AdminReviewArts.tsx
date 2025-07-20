@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { BackButton } from "@/components/BackButton";
 import {
   Table,
   TableBody,
@@ -114,9 +115,12 @@ export const AdminReviewArts = () => {
         <div className="max-w-7xl mx-auto space-y-6">
           {/* Header */}
           <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-3xl font-bold text-foreground">Review Arts</h1>
-              <p className="text-muted-foreground">Review and manage artwork submissions</p>
+            <div className="flex items-center gap-4">
+              <BackButton />
+              <div>
+                <h1 className="text-3xl font-bold text-foreground">Review Arts</h1>
+                <p className="text-muted-foreground">Review and manage artwork submissions</p>
+              </div>
             </div>
             <div className="flex gap-2">
               <Button variant="outline">

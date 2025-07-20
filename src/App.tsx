@@ -22,6 +22,7 @@ import { AdminReports } from "./pages/AdminReports";
 import { CuratorDashboard } from "./pages/CuratorDashboard";
 import { ProfessorDashboard } from "./pages/ProfessorDashboard";
 import { VisitorDashboard } from "./pages/VisitorDashboard";
+import { UpgradeToCurator } from "./pages/UpgradeToCurator";
 import { Sidebar } from "./components/Sidebar";
 import NotFound from "./pages/NotFound";
 
@@ -54,6 +55,7 @@ const App = () => (
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="view-profile" element={<ViewProfile />} />
           <Route path="edit-profile" element={<EditProfile />} />
+          <Route path="upgrade-to-curator" element={<UpgradeToCurator />} />
           <Route path="admin/dashboard" element={<AdminDashboard />} />
           <Route path="curator/dashboard" element={<CuratorDashboard />} />
           <Route path="professor/dashboard" element={<ProfessorDashboard />} />
