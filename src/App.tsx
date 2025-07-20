@@ -21,6 +21,7 @@ import { AdminCategories } from "./pages/AdminCategories";
 import { AdminReports } from "./pages/AdminReports";
 import { CuratorDashboard } from "./pages/CuratorDashboard";
 import { ProfessorDashboard } from "./pages/ProfessorDashboard";
+import { VisitorDashboard } from "./pages/VisitorDashboard";
 import { Sidebar } from "./components/Sidebar";
 import NotFound from "./pages/NotFound";
 
@@ -56,6 +57,7 @@ const App = () => (
           <Route path="admin/dashboard" element={<AdminDashboard />} />
           <Route path="curator/dashboard" element={<CuratorDashboard />} />
           <Route path="professor/dashboard" element={<ProfessorDashboard />} />
+          <Route path="visitor/dashboard" element={<VisitorDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

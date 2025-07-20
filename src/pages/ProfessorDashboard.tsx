@@ -1,32 +1,14 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { BarChart3, Users, FileText, Settings, LogOut, BookOpen, GraduationCap, Calendar, Palette } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { FileText, Settings, BookOpen, GraduationCap, Calendar } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Sidebar } from '@/components/Sidebar';
 
 export const ProfessorDashboard = () => {
   const navigate = useNavigate();
-  const userRole = 'professor';
-
-  const handleLogout = () => {
-    navigate('/signin');
-  };
 
   return (
-    <div className="flex h-screen bg-background">
-      <div className="flex-1 flex flex-col">
-        <header className="h-16 bg-gradient-primary shadow-elegant flex items-center justify-between px-6">
-          <Link to="/" className="flex items-center space-x-2">
-            <Palette className="h-8 w-8 text-archive-gold" />
-            <span className="text-xl font-bold text-primary-foreground">
-              Historical Archive
-            </span>
-          </Link>
-        </header>
-        <div className="flex flex-1 overflow-hidden">
-          <div className="flex-1 p-6 overflow-auto">
-            <div className="max-w-7xl mx-auto space-y-8">
+    <div className="min-h-screen bg-background">
+      <div className="max-w-7xl mx-auto p-6 space-y-8">
               {/* Header */}
               <div className="text-center">
                 <h1 className="text-4xl font-bold text-foreground mb-4">Professor Dashboard</h1>
@@ -127,11 +109,7 @@ export const ProfessorDashboard = () => {
                   </div>
                 </CardContent>
               </Card>
-            </div>
-          </div>
-          <Sidebar userRole={userRole} onLogout={handleLogout} />
         </div>
-      </div>
     </div>
   );
 };
