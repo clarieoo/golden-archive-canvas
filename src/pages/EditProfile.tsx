@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { BackButton } from "@/components/BackButton";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 
@@ -52,11 +53,14 @@ export const EditProfile = () => {
     <div className="min-h-screen bg-background py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto space-y-8">
         {/* Header */}
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-foreground">Edit Profile</h1>
-          <p className="mt-2 text-muted-foreground">
-            Update your account information
-          </p>
+        <div className="flex items-center space-x-4 mb-8">
+          <BackButton />
+          <div>
+            <h1 className="text-3xl font-bold text-foreground">Edit Profile</h1>
+            <p className="mt-2 text-muted-foreground">
+              Update your account information
+            </p>
+          </div>
         </div>
 
         {/* Edit Profile Form */}

@@ -67,7 +67,7 @@ export const Sidebar = ({ userRole, onLogout, isOpen = false, onClose }: Sidebar
     visitor: [
       { icon: BarChart3, label: "Dashboard", path: "/visitor-dashboard" },
       { icon: Images, label: "Browse Gallery", path: "/gallery" },
-      { icon: Bookmark, label: "Saved Items", path: "/saved" },
+      { icon: Bookmark, label: "Watch Later", path: "/watch-later" },
       { icon: Award, label: "Upgrade to Curator", path: "/upgrade-to-curator" },
     ]
   };
@@ -128,6 +128,14 @@ export const Sidebar = ({ userRole, onLogout, isOpen = false, onClose }: Sidebar
             >
               <Settings className="h-5 w-5" />
               <span className="font-medium">Edit Profile</span>
+            </Link>
+            <Link
+              to="/change-password"
+              onClick={handleClose}
+              className="flex items-center space-x-3 px-4 py-3 rounded-lg text-muted-foreground hover:bg-archive-gold/10 hover:text-foreground transition-all duration-200"
+            >
+              <Settings className="h-5 w-5" />
+              <span className="font-medium">Change Password</span>
             </Link>
             <Separator className="bg-archive-gold/20" />
             <Button

@@ -14,6 +14,8 @@ import { SignUp } from "./pages/SignUp";
 import { ForgotPassword } from "./pages/ForgotPassword";
 import { ViewProfile } from "./pages/ViewProfile";
 import { EditProfile } from "./pages/EditProfile";
+import { ChangePassword } from "./pages/ChangePassword";
+import { WatchLater } from "./pages/WatchLater";
 import { AdminDashboard } from "./pages/AdminDashboard";
 import { AdminManageUsers } from "./pages/AdminManageUsers";
 import { AdminReviewArts } from "./pages/AdminReviewArts";
@@ -56,6 +58,8 @@ const App = () => (
           <Route path="view-profile" element={<ViewProfile />} />
           <Route path="edit-profile" element={<EditProfile />} />
           <Route path="upgrade-to-curator" element={<UpgradeToCurator />} />
+          <Route path="change-password" element={<ChangePassword />} />
+          <Route path="watch-later" element={<WatchLater />} />
           <Route path="admin/dashboard" element={<AdminDashboard />} />
           <Route path="curator/dashboard" element={<CuratorDashboard />} />
           <Route path="professor/dashboard" element={<ProfessorDashboard />} />
