@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -14,8 +15,10 @@ import {
   Users
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Sidebar } from "@/components/Sidebar";
 
 export const ProfessorDashboard = () => {
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [selectedArt, setSelectedArt] = useState<number | null>(null);
   const [reviewComment, setReviewComment] = useState("");
@@ -104,9 +107,16 @@ export const ProfessorDashboard = () => {
     </Card>
   );
 
+  const handleLogout = () => {
+    navigate('/signin');
+  };
+
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <div className="min-h-screen bg-background flex">
+      <Sidebar userRole="professor" onLogout={handleLogout} />
+      
+      <div className="flex-1 p-6 lg:ml-0">
+        <div className="max-w-7xl mx-auto space-y-8">
         {/* Header */}
         <div className="text-center">
           <h1 className="text-4xl font-bold text-foreground mb-4">Professor Dashboard</h1>
@@ -290,9 +300,10 @@ export const ProfessorDashboard = () => {
                   Guidelines
                 </Button>
               </CardContent>
-            </Card>
-          </div>
+        </Card>
         </div>
+      </div>
+    </div>
       </div>
     </div>
   );

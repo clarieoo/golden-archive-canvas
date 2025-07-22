@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -12,8 +13,10 @@ import {
   Palette,
   Award
 } from "lucide-react";
+import { Sidebar } from "@/components/Sidebar";
 
 export const AdminDashboard = () => {
+  const navigate = useNavigate();
   const [stats] = useState({
     totalUsers: 1247,
     totalArtworks: 2834,
@@ -53,9 +56,17 @@ export const AdminDashboard = () => {
     </Card>
   );
 
+  const handleLogout = () => {
+    // Handle logout logic
+    navigate('/signin');
+  };
+
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <div className="min-h-screen bg-background flex">
+      <Sidebar userRole="admin" onLogout={handleLogout} />
+      
+      <div className="flex-1 p-6 lg:ml-0">
+        <div className="max-w-7xl mx-auto space-y-8">
         {/* Header */}
         <div className="text-center">
           <h1 className="text-4xl font-bold text-foreground mb-4">Admin Dashboard</h1>
@@ -155,25 +166,42 @@ export const AdminDashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Button variant="archive" className="h-12">
+              <Button 
+                variant="archive" 
+                className="h-12"
+                onClick={() => navigate('/admin-manage-users')}
+              >
                 <Users className="h-4 w-4 mr-2" />
                 Manage Users
               </Button>
-              <Button variant="archive" className="h-12">
+              <Button 
+                variant="archive" 
+                className="h-12"
+                onClick={() => navigate('/admin-review-arts')}
+              >
                 <Images className="h-4 w-4 mr-2" />
                 Review Arts
               </Button>
-              <Button variant="archive" className="h-12">
+              <Button 
+                variant="archive" 
+                className="h-12"
+                onClick={() => navigate('/admin-categories')}
+              >
                 <Palette className="h-4 w-4 mr-2" />
                 Categories
               </Button>
-              <Button variant="archive" className="h-12">
+              <Button 
+                variant="archive" 
+                className="h-12"
+                onClick={() => navigate('/admin-reports')}
+              >
                 <Calendar className="h-4 w-4 mr-2" />
                 Reports
               </Button>
             </div>
           </CardContent>
         </Card>
+        </div>
       </div>
     </div>
   );
