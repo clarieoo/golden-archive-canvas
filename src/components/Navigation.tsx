@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Palette } from "lucide-react";
+import { Menu, X, Palette, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
-import { BackButton } from "./BackButton";
+import { useAuth } from "@/hooks/useAuth";
+import { Sidebar } from "./Sidebar";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
+  const { user, isAuthenticated, logout } = useAuth();
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -46,13 +50,38 @@ export const Navigation = () => {
                 {item.label}
               </Link>
             ))}
-            <div className="flex items-center space-x-2">
-              <Button variant="golden" size="sm" asChild>
-                <Link to="/signin">Sign In</Link>
-              </Button>
-              <Button variant="elegant" size="sm" asChild>
-                <Link to="/signup">Sign Up</Link>
-              </Button>
+            <div className="flex items-center space-x-3">
+              {isAuthenticated ? (
+                <>
+                  <Avatar className="h-8 w-8 cursor-pointer">
+                    <AvatarImage src={user?.avatar} alt={user?.username} />
+                    <AvatarFallback className="bg-archive-gold/20 text-archive-brown text-sm">
+                      {user?.username?.charAt(0).toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setIsSidebarOpen(true)}
+                    className="text-primary-foreground"
+                  >
+                    <Menu className="h-5 w-5" />
+                  </Button>
+                </>
+              ) : (
+                <div className="flex items-center space-x-2">
+                  <Button variant="ghost" asChild>
+                    <Link to="/signin" className="text-primary-foreground">
+                      Sign In
+                    </Link>
+                  </Button>
+                  <Button variant="archive" asChild>
+                    <Link to="/signup">
+                      Sign Up
+                    </Link>
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
 
@@ -87,17 +116,55 @@ export const Navigation = () => {
                 </Link>
               ))}
               <div className="flex flex-col space-y-2 pt-2">
-                <Button variant="golden" size="sm" asChild>
-                  <Link to="/signin" onClick={() => setIsOpen(false)}>Sign In</Link>
-                </Button>
-                <Button variant="elegant" size="sm" asChild>
-                  <Link to="/signup" onClick={() => setIsOpen(false)}>Sign Up</Link>
-                </Button>
+                {isAuthenticated ? (
+                  <div className="flex items-center space-x-2 px-3 py-2">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={user?.avatar} alt={user?.username} />
+                      <AvatarFallback className="bg-archive-gold/20 text-archive-brown text-sm">
+                        {user?.username?.charAt(0).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                    <Button
+                      variant="ghost"
+                      onClick={() => {
+                        setIsOpen(false);
+                        setIsSidebarOpen(true);
+                      }}
+                      className="text-primary-foreground"
+                    >
+                      <Menu className="h-4 w-4 mr-2" />
+                      Menu
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="flex flex-col space-y-2">
+                    <Button variant="ghost" asChild>
+                      <Link to="/signin" onClick={() => setIsOpen(false)}>
+                        Sign In
+                      </Link>
+                    </Button>
+                    <Button variant="archive" asChild>
+                      <Link to="/signup" onClick={() => setIsOpen(false)}>
+                        Sign Up
+                      </Link>
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         )}
       </div>
+      
+      {/* Sidebar for authenticated users */}
+      {isAuthenticated && isSidebarOpen && (
+        <Sidebar 
+          userRole={user?.role || 'visitor'} 
+          onLogout={logout}
+          isOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
+        />
+      )}
     </nav>
   );
 };

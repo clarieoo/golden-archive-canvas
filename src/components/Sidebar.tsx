@@ -12,7 +12,13 @@ import {
   CheckCircle, 
   Clock,
   Menu,
-  X
+  X,
+  Award,
+  BarChart3,
+  Users,
+  FileText,
+  Palette,
+  Bookmark
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -20,38 +26,49 @@ import { Separator } from "@/components/ui/separator";
 interface SidebarProps {
   userRole: string;
   onLogout: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
-export const Sidebar = ({ userRole, onLogout }: SidebarProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+export const Sidebar = ({ userRole, onLogout, isOpen = false, onClose }: SidebarProps) => {
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
   const location = useLocation();
-
-  const toggleSidebar = () => setIsOpen(!isOpen);
+  
+  const actualIsOpen = isOpen !== undefined ? isOpen : internalIsOpen;
+  const handleClose = onClose || (() => setInternalIsOpen(false));
+  const toggleSidebar = () => {
+    if (onClose) {
+      onClose();
+    } else {
+      setInternalIsOpen(!internalIsOpen);
+    }
+  };
 
   const menuItems = {
     admin: [
-      { icon: Home, label: "Dashboard", path: "/admin/dashboard" },
-      { icon: Images, label: "Gallery", path: "/gallery" },
-      { icon: Settings, label: "Settings", path: "/admin/settings" },
-      { icon: User, label: "Users", path: "/admin/users" },
+      { icon: BarChart3, label: "Dashboard", path: "/admin-dashboard" },
+      { icon: Users, label: "Manage Users", path: "/admin-manage-users" },
+      { icon: FileText, label: "Review Arts", path: "/admin-review-arts" },
+      { icon: Palette, label: "Categories", path: "/admin-categories" },
+      { icon: BarChart3, label: "Reports", path: "/admin-reports" },
     ],
     curator: [
-      { icon: Home, label: "Dashboard", path: "/curator/dashboard" },
+      { icon: BarChart3, label: "Dashboard", path: "/curator-dashboard" },
       { icon: Upload, label: "Upload Art", path: "/curator/upload" },
       { icon: Images, label: "My Arts", path: "/curator/arts" },
       { icon: Images, label: "Gallery", path: "/gallery" },
     ],
     professor: [
-      { icon: Home, label: "Dashboard", path: "/professor/dashboard" },
+      { icon: BarChart3, label: "Dashboard", path: "/professor-dashboard" },
       { icon: CheckCircle, label: "Approve Arts", path: "/professor/approve" },
       { icon: Clock, label: "Pending", path: "/professor/pending" },
       { icon: Images, label: "Gallery", path: "/gallery" },
     ],
     visitor: [
-      { icon: Home, label: "Home", path: "/" },
-      { icon: Images, label: "Gallery", path: "/gallery" },
-      { icon: Info, label: "About", path: "/about" },
-      { icon: Mail, label: "Contact", path: "/contact" },
+      { icon: BarChart3, label: "Dashboard", path: "/visitor-dashboard" },
+      { icon: Images, label: "Browse Gallery", path: "/gallery" },
+      { icon: Bookmark, label: "Watch Later", path: "/watch-later" },
+      { icon: Award, label: "Upgrade to Curator", path: "/upgrade-to-curator" },
     ]
   };
 
@@ -59,20 +76,10 @@ export const Sidebar = ({ userRole, onLogout }: SidebarProps) => {
 
   return (
     <>
-      {/* Mobile menu button */}
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={toggleSidebar}
-        className="fixed top-4 left-4 z-50 lg:hidden bg-gradient-card shadow-warm"
-      >
-        {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-      </Button>
-
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-40 w-64 bg-gradient-card border-r border-archive-gold/20 transform transition-transform duration-300 ease-in-out ${
-        isOpen ? 'translate-x-0' : '-translate-x-full'
-      } lg:translate-x-0 lg:static lg:inset-0`}>
+      <div className={`fixed inset-y-0 right-0 z-40 w-64 bg-gradient-card border-l border-archive-gold/20 transform transition-transform duration-300 ease-in-out ${
+        actualIsOpen ? 'translate-x-0' : 'translate-x-full'
+      }`}>
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="p-6 border-b border-archive-gold/20">
@@ -90,7 +97,7 @@ export const Sidebar = ({ userRole, onLogout }: SidebarProps) => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleClose}
                   className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                     isActive 
                       ? 'bg-archive-gold/20 text-archive-brown shadow-warm' 
@@ -107,17 +114,36 @@ export const Sidebar = ({ userRole, onLogout }: SidebarProps) => {
           {/* Footer */}
           <div className="p-4 border-t border-archive-gold/20 space-y-2">
             <Link
-              to="/profile"
-              onClick={() => setIsOpen(false)}
+              to="/view-profile"
+              onClick={handleClose}
               className="flex items-center space-x-3 px-4 py-3 rounded-lg text-muted-foreground hover:bg-archive-gold/10 hover:text-foreground transition-all duration-200"
             >
               <User className="h-5 w-5" />
-              <span className="font-medium">Profile</span>
+              <span className="font-medium">View Profile</span>
+            </Link>
+            <Link
+              to="/edit-profile"
+              onClick={handleClose}
+              className="flex items-center space-x-3 px-4 py-3 rounded-lg text-muted-foreground hover:bg-archive-gold/10 hover:text-foreground transition-all duration-200"
+            >
+              <Settings className="h-5 w-5" />
+              <span className="font-medium">Edit Profile</span>
+            </Link>
+            <Link
+              to="/change-password"
+              onClick={handleClose}
+              className="flex items-center space-x-3 px-4 py-3 rounded-lg text-muted-foreground hover:bg-archive-gold/10 hover:text-foreground transition-all duration-200"
+            >
+              <Settings className="h-5 w-5" />
+              <span className="font-medium">Change Password</span>
             </Link>
             <Separator className="bg-archive-gold/20" />
             <Button
               variant="ghost"
-              onClick={onLogout}
+              onClick={() => {
+                onLogout();
+                handleClose();
+              }}
               className="w-full justify-start text-muted-foreground hover:bg-archive-gold/10 hover:text-foreground"
             >
               <LogOut className="h-5 w-5 mr-3" />
@@ -128,10 +154,10 @@ export const Sidebar = ({ userRole, onLogout }: SidebarProps) => {
       </div>
 
       {/* Overlay for mobile */}
-      {isOpen && (
+      {actualIsOpen && (
         <div 
-          className="fixed inset-0 bg-black/50 z-30 lg:hidden"
-          onClick={() => setIsOpen(false)}
+          className="fixed inset-0 bg-black/50 z-30"
+          onClick={handleClose}
         />
       )}
     </>

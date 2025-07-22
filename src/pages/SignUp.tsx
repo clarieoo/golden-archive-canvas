@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 
 export const SignUp = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -20,6 +20,8 @@ export const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { toast } = useToast();
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,11 +44,23 @@ export const SignUp = () => {
       return;
     }
 
-    // Here you would typically register with your backend
+    // Simulate user registration - in real app, this would be an API call
+    const userData = {
+      id: Date.now().toString(),
+      username: formData.username,
+      email: formData.email,
+      role: "visitor",
+      avatar: ""
+    };
+    
+    login(userData);
+    
     toast({
       title: "Account Created!",
-      description: "Welcome to Historical Archive. Please check your email to verify your account.",
+      description: "Welcome to Historical Archive! Your account has been created successfully.",
     });
+
+    navigate('/');
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,38 +89,21 @@ export const SignUp = () => {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium text-foreground mb-2">
-                    First Name
-                  </label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      id="firstName"
-                      name="firstName"
-                      type="text"
-                      required
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      className="pl-10 bg-background border-archive-gold/20"
-                      placeholder="First name"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium text-foreground mb-2">
-                    Last Name
-                  </label>
+              <div>
+                <label htmlFor="username" className="block text-sm font-medium text-foreground mb-2">
+                  Username
+                </label>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
-                    id="lastName"
-                    name="lastName"
+                    id="username"
+                    name="username"
                     type="text"
                     required
-                    value={formData.lastName}
+                    value={formData.username}
                     onChange={handleChange}
-                    className="bg-background border-archive-gold/20"
-                    placeholder="Last name"
+                    className="pl-10 bg-background border-archive-gold/20"
+                    placeholder="Enter your username"
                   />
                 </div>
               </div>

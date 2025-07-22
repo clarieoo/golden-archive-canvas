@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { BackButton } from "@/components/BackButton";
 import {
   Table,
   TableBody,
@@ -103,9 +104,12 @@ export const AdminCategories = () => {
         <div className="max-w-7xl mx-auto space-y-6">
           {/* Header */}
           <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-3xl font-bold text-foreground">Categories</h1>
-              <p className="text-muted-foreground">Manage artwork categories and classifications</p>
+            <div className="flex items-center gap-4">
+              <BackButton />
+              <div>
+                <h1 className="text-3xl font-bold text-foreground">Categories</h1>
+                <p className="text-muted-foreground">Manage artwork categories and classifications</p>
+              </div>
             </div>
             <Button variant="archive">
               <Plus className="h-4 w-4 mr-2" />

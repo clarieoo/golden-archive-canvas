@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-archive.jpg";
 import galleryImage from "@/assets/gallery-sample.jpg";
 
-export const Home = () => {
+export const VisitorDashboard = () => {
   const featuredArtworks = [
     {
       id: "1",
@@ -176,7 +176,7 @@ export const Home = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="golden" size="lg" asChild>
-              <Link to="/signup">Join Now</Link>
+              <Link to="/upgrade-to-curator">Upgrade to Curator</Link>
             </Button>
             <Button variant="elegant" size="lg" asChild>
               <Link to="/gallery">Browse Collection</Link>
