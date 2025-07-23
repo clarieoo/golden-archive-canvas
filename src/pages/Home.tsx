@@ -3,36 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Archive, Users, Star, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-archive.jpg";
-import galleryImage from "@/assets/gallery-sample.jpg";
 
 export const Home = () => {
-  const featuredArtworks = [
-    {
-      id: "1",
-      title: "The Renaissance Portrait",
-      artist: "Leonardo da Vinci",
-      year: "1503",
-      image: galleryImage,
-      description: "A magnificent piece showcasing the artistic mastery of the Renaissance era."
-    },
-    {
-      id: "2", 
-      title: "Classical Sculpture",
-      artist: "Michelangelo",
-      year: "1501",
-      image: galleryImage,
-      description: "An exemplary work demonstrating the perfection of classical sculptural techniques."
-    },
-    {
-      id: "3",
-      title: "Medieval Manuscript",
-      artist: "Unknown Monk",
-      year: "1200",
-      image: galleryImage,
-      description: "A beautifully illuminated manuscript reflecting medieval artistic traditions."
-    }
-  ];
-
   const features = [
     {
       icon: Archive,
@@ -108,59 +80,6 @@ export const Home = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Artworks Section */}
-      <section className="py-20 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Featured Artworks
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Discover some of the most remarkable pieces from our collection, carefully selected for their historical significance.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredArtworks.map((artwork) => (
-              <Card key={artwork.id} className="bg-gradient-card border-archive-gold/20 hover:shadow-warm transition-all duration-300 animate-scale-in group">
-                <div className="relative overflow-hidden rounded-t-lg">
-                  <img 
-                    src={artwork.image} 
-                    alt={artwork.title}
-                    className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
-                    {artwork.title}
-                  </h3>
-                  <p className="text-archive-gold font-medium mb-2">
-                    {artwork.artist} • {artwork.year}
-                  </p>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    {artwork.description}
-                  </p>
-                  <Button variant="outline" size="sm" asChild className="w-full">
-                    <Link to="/gallery">
-                      View in Gallery
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          
-          <div className="text-center mt-12">
-            <Button variant="archive" size="lg" asChild>
-              <Link to="/gallery">
-                Explore Full Collection
-              </Link>
-            </Button>
           </div>
         </div>
       </section>
