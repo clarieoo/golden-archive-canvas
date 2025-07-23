@@ -11,6 +11,10 @@ import { Contact } from "./pages/Contact";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
 import { AdminDashboard } from "./pages/AdminDashboard";
+import { AdminManageUsers } from "./pages/AdminManageUsers";
+import { AdminReviewArts } from "./pages/AdminReviewArts";
+import { AdminCategories } from "./pages/AdminCategories";
+import { AdminReports } from "./pages/AdminReports";
 import { CuratorDashboard } from "./pages/CuratorDashboard";
 import { ProfessorDashboard } from "./pages/ProfessorDashboard";
 import { Sidebar } from "./components/Sidebar";
@@ -32,6 +36,10 @@ const App = () => (
             <Route path="contact" element={<Contact />} />
             {/* Temporary routes for UI review */}
             <Route path="admin-dashboard" element={<AdminDashboard />} />
+            <Route path="admin-manage-users" element={<AdminManageUsers />} />
+            <Route path="admin-review-arts" element={<AdminReviewArts />} />
+            <Route path="admin-categories" element={<AdminCategories />} />
+            <Route path="admin-reports" element={<AdminReports />} />
             <Route path="curator-dashboard" element={<CuratorDashboard />} />
             <Route path="professor-dashboard" element={<ProfessorDashboard />} />
           </Route>
